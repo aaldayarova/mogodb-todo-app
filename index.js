@@ -9,6 +9,7 @@ const mongoose = require("mongoose");
 // Connecting TodoTask.js
 const TodoTask = require("./models/TodoTask");
 
+// CONCEPT #1: Configurations
 dotenv.config();
 
 // Code to enable access to the 'style.css' file
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 // Second part of connection to db
 // mongoose.set("useFindAndModify", false);
 
+// CONCEPT #3: External Database Management or Clustering
 mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
     console.log("Connected to db!");
     
@@ -31,6 +33,7 @@ mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => {
 app.set("view engine", "ejs");
 
 // Code to render information on the webpage
+// CONCEPT #3: Views
 app.get("/", (req, res) => {
     TodoTask.find({}, (err, tasks) => {
     res.render("todo.ejs", { todoTasks: tasks });
